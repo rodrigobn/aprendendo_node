@@ -1,12 +1,19 @@
 const express = require('express'); // Importando o framework express. Retorna uma função
 const mongoose = require('mongoose');
 const requireDir = require('require-dir');
+const cors = require(`cors`);
 
 // Iniciando o app
 const app = express();
 
 // metodo utilizado para permitir enviar dados no formato json para aplicação
 app.use(express.json());
+
+/**Metodo para permitir que outros dominios acessem os dados.
+ * Pode ser passado como parametro quais dominios teram acesso,
+ * configurações de segurança. Se for vazio, esta liberado para
+ * qualquer dominio*/ 
+app.use(cors());
 
 //Iniciando o banco de dados
 mongoose.connect(
